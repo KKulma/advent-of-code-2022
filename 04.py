@@ -7,32 +7,26 @@ input_list = input.split('\n')
 
 
 # ### PART 1
-input_list = [
-    '2-4,6-8',
-    '2-3,4-5',
-    '5-7,7-9',
-    '2-8,3-7',
-    '6-6,4-6',
-    '2-6,4-8'
-]
-
-overlaps = []
-ranges_list = []
-for element in input_list:
-    range_input = [[int(i[0]), int(i[2])+1] for i in element.split(',')]
-    ranges = [list(range(i[0], i[1])) for i in range_input]
-    common_elements = set(ranges[0]).intersection(set(ranges[1]))
-    overlaps.append(list(common_elements))
-    ranges_list.append(ranges)
+# input_list = [
+#     '2-4,6-8',
+#     '2-3,4-5',
+#     '5-7,7-9',
+#     '2-8,3-7',
+#     '6-6,4-6',
+#     '2-6,4-8'
+# ]
 
 full_overlaps = 0
-for index, data in enumerate(overlaps):
-    if len(data)>0:
-        range_data = ranges_list[index]
-        for range in range_data:
-            if range == data:
-                full_overlaps += 1
-# answer
-full_overlaps
+for element in input_list:
+# element = input_list[0]
+    range_input_str = [i.split('-') for i in element.split(',')]
+    range_input_int = [list(map(int, j)) for j in range_input_str]
+    x1, y1 = range_input_int[0]
+    x2, y2 = range_input_int[1]
+    if (x1 <= x2 and y1 >= y2) or (x2 <= x1 and y2 >= y1):
+        full_overlaps+=1
+
+
+
 
 ### PART 2
